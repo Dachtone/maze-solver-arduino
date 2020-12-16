@@ -87,7 +87,13 @@ void RunMaze()
   MoveProper(MazeSolver::Direction::Up);
   
   MazeSolver::Solver maze(Scan, Move);
-  maze.Solve(MazeSolver::Solution::PeriodicCorrection);
+  if (maze.Solve(MazeSolver::Solution::PeriodicCorrection))
+  {
+    if (orientation == MazeSolver::Direction::Up)
+      Turn(Rotation::Right);
+    
+    MoveProper(MazeSolver::Direction::Up);
+  }
 }
 
 bool Scan(MazeSolver::Direction direction)
